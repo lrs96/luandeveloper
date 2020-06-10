@@ -1,30 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa'
+
+import api from '../../../services/api';
 
 import './style.scss';
 import imageHB from '../../../assets/comite-da-hackathon-brasil.svg';
 
 
+interface Works {
+    id: number,
+    image_url: string,
+    funcao: string,
+    name_work: string,
+    description: string,
+    site: string
+}
+
 const VoluntterWork = () => {
+    const [ works, setWorks ] = useState<Works[]>([])
+
+    useEffect(() => {
+        api.get('voluntter-work').then(response => { 
+            setWorks(response.data)
+        })
+    }, [])
+
     return (
         <section className="container-fluid" id="voluntter_work">
             <div className="container">
             <h2 className="mb-4 mb-lg-5 d-block text-center">Trabalhos <span className="text-bs-blue">voluntários</span>.</h2>
                 <div className="row">
-                    <div className="col-12 col-sm-6 col-md-4">
+                    {works.map(work => (
+                    <div className="col-12 col-sm-6 col-md-4" key={work.id}>
                         <div className="card-work rounded">
-                            <img src={imageHB} className="img-fluid" alt="Hackathon Brasil"/>
+                            <img src={work.image_url} className="img-fluid" alt={work.name_work}/>
                             <div className="infos-card">
                                 <p className="mb-0 work">
-                                    <span className="custom">Organizador</span>
+                                    <span className="custom">{work.funcao}</span>
                                 </p>
-                                <h3 className="h5 mb-2 text-white title">Membro do comite da Hachathon Brasil</h3>
-                                <p className="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce scelerisque, sem et luctus tristique, lectus arcu convalli. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce scelerisque, sem et luctus tristique.</p>
-                                <a href="/" className="d-flex align-items-center">
-                                    <span className="pr-3">Saber mais</span> <FaArrowRight /></a>
+                                <h3 className="h5 mb-2 text-white title">{work.name_work}</h3>
+                                <p className="mb-2">{work.description}</p>
+                                <a href={work.site} className="d-flex align-items-center">
+                                    <span className="pr-3">Saber mais</span> <FaArrowRight />
+                                </a>
                             </div>
                         </div>
                     </div>
+                    ))}
                 </div>
             </div>
         </section>
