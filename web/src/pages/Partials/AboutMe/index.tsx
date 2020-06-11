@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import {FaLinkedinIn, FaGithubAlt, FaInstagram, FaFacebookF, FaWhatsapp  } from 'react-icons/fa'
+import {FaLinkedinIn, FaGithubAlt, FaInstagram, FaFacebookF, FaWhatsapp  } from 'react-icons/fa';
 import fotoAboutMe from '../../../assets/about-me-luan-rodrigues.svg';
 import './style.scss';
 
@@ -19,7 +19,7 @@ const AboutMe = () => {
 
     useEffect(() => {
         api.get('personal-data').then(response => {
-            setSociais(response.data);
+            setSociais(response.data)
         })
     }, [])
 

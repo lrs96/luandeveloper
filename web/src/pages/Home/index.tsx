@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGithubAlt, FaWhatsapp } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGithubAlt, FaWhatsapp } from 'react-icons/fa';
 import Header from '../Partials/Header';
 import AboutMe from '../Partials/AboutMe'
 import VolunteerWork from '../Partials/VolunteerWork';
@@ -28,7 +28,7 @@ const Home = () => {
 
     useEffect(() => {
         api.get('personal-data').then(response => {
-            setInfos(response.data)
+            setInfos(response.data);
         })
     }, [])
 

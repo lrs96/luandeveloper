@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import {FaLinkedinIn, FaGithubAlt, FaInstagram, FaFacebookF, FaWhatsapp  } from 'react-icons/fa';
+import { FaLinkedinIn, FaGithubAlt, FaInstagram, FaFacebookF, FaWhatsapp } from 'react-icons/fa'
 
 import './style.scss';
 import api from '../../../services/api'
@@ -23,12 +23,12 @@ const TalkMe = () => {
     })
     const [message, setMessage] = useState<string>()
 
-    useEffect(() => {
-        api.get('personal-data').then(response => {
-            setSociais(response.data);
-        })
+    useEffect(()=> {
+        api.get('personal-data').then(response =>{
+            setSociais(response.data)
+        } )
     }, [])
-
+    
     function handleTextAreaChange(event:ChangeEvent<HTMLTextAreaElement>){
         const {name, value} = event.target;
         console.log({name: value})
@@ -38,13 +38,10 @@ const TalkMe = () => {
     function handleInputchange(event: ChangeEvent<HTMLInputElement>){ 
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value})
-        debugger;
     }
 
     async function handleSubmit(event: FormEvent) {
-        debugger;
         event.preventDefault();
-        debugger;
         const {nome, email, telefone} = formData;
         const mensagem = message;
         const data = {
@@ -53,10 +50,7 @@ const TalkMe = () => {
             telefone,
             mensagem
         }
-        debugger;
-        console.log(`Dados: ${data}`)
         await api.post('send-mail', data);
-        alert('E-mail enviado com sucesso')
     }
 
     return (
