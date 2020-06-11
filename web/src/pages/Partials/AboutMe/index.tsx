@@ -35,7 +35,7 @@ const AboutMe = () => {
                             <h2 className="mb-2 h1 title">
                                 Sobre<span className="text-bs-blue d-block">mim<span className="text-dark">.</span></span>
                             </h2>
-                            <p className="mb-1 subtitle">Front End, UI desginer,  palestrante, membro do comitê da Hackathon Brasil e organizador da comunidade WordPress São Paulo. Sou apaixonado por tecnologia, livros, séries e muito ativo em comunidades de tecnologia, procuro sempre me desafiar em experiências novas para obter mais conhecimento e uma evolução pessoal.</p>
+                            <p className="mb-1 subtitle">Front End, UI desginer,  palestrante, membro do comitê da Hackathon Brasil e organizador da comunidade WordPress São Paulo. Sou apaixonado por tecnologia, livros, séries e muito ativo em comunidades de tecnologia.</p>
                             <p className="mb-0 subtitle">Amo cultivar a arte de compartilhar conhecimento e experiências com as pessoas, afim de conseguir impactar o cotidiano e a vida delas de alguma forma.</p>
                             {sociais.map(social => (
                             <div className="social mt-3" key={1}>
