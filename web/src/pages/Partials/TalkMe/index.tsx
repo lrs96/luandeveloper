@@ -1,5 +1,6 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { FaLinkedinIn, FaGithubAlt, FaInstagram, FaFacebookF, FaWhatsapp } from 'react-icons/fa'
+import { FaLinkedinIn, FaGithubAlt, FaInstagram, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
+import swal from 'sweetalert';
 
 import './style.scss';
 import api from '../../../services/api'
@@ -31,7 +32,6 @@ const TalkMe = () => {
     
     function handleTextAreaChange(event:ChangeEvent<HTMLTextAreaElement>){
         const {name, value} = event.target;
-        console.log({name: value})
         setMessage(value)
     }
 
@@ -50,7 +50,16 @@ const TalkMe = () => {
             telefone,
             mensagem
         }
-        await api.post('send-mail', data);
+        try {
+            await api.post('send-mail', data);
+            swal("Enviado com sucesso", "Assim que puder, eu entro em contato via e-mail ou telefone", "success");
+            debugger;
+            setFormData({nome: '', email: '', telefone: ''} )
+            setMessage('')
+            debugger;
+        } catch {
+            swal("Ops", "Parece que algo deu errado. Tente novamente", "danger");
+        }
     }
 
     return (
@@ -89,6 +98,7 @@ const TalkMe = () => {
                                     type="text"
                                     name="nome"
                                     id="name"
+                                    required
                                     className="form-control"
                                     onChange={handleInputchange}
                                     />
@@ -100,6 +110,7 @@ const TalkMe = () => {
                                         type="email"
                                         name="email"
                                         id="email"
+                                        required
                                         className="form-control"
                                         onChange={handleInputchange}/>
                                 </div>
@@ -109,6 +120,7 @@ const TalkMe = () => {
                                         type="text"
                                         name="telefone"
                                         id="telefone"
+                                        required
                                         className="form-control"
                                         onChange={handleInputchange} />
                                 </div>
@@ -120,6 +132,7 @@ const TalkMe = () => {
                                     id="message"
                                     name="message"
                                     rows={3}
+                                    required
                                     onChange={handleTextAreaChange}
                                     >
                                 </textarea>
