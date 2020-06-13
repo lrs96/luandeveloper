@@ -1,1 +1,1 @@
-web: knex migrate:rollback && knex migrate:latest && knex seed:run && node dist/src/server.js
+web: knex --knexfile dist/knexfile.js migrate:rollback && knex --knexfile dist/knexfile.js migrate:latest && knex --knexfile dist/knexfile.js seed:run && node dist/src/server.js

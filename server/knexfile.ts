@@ -1,4 +1,5 @@
 import path from 'path';
+require('dotenv').config()
 
 module.exports = {
     development: {
@@ -17,6 +18,10 @@ module.exports = {
     production: {
         client: "pg",
         connection: {
+            host: process.env.HEROKU_HOST,
+            user: process.env.HEROKU_USER,
+            password: process.env.HEROKU_PASSWORD,
+            database: process.env.HEROKU_DATABASE,
             filename: process.env.DATABASE_URL
         },
         migrations: {

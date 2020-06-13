@@ -8,8 +8,8 @@
   },
   "scripts": {
     "dev": "ts-node-dev --transpileOnly --ignore-watch node_modules/ src/server.ts",
-    "knex:migrate": "knex --knexfile dist/knexfile.ts migrate:latest",
-    "knex:seed": "knex --knexfile dist/knexfile.ts seed:run",
+    "knex:migrate": "knex --knexfile dist/knexfile.js migrate:latest",
+    "knex:seed": "knex --knexfile dist/knexfile.js seed:run",
     "build-ts": "tsc",
     "postinstall": "npm run build-ts",
     "start": "npm run serve",
@@ -29,6 +29,7 @@
     "express": "^4.17.1",
     "knex": "^0.21.1",
     "nodemailer": "^6.4.8",
+    "pg": "^8.2.1",
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {
