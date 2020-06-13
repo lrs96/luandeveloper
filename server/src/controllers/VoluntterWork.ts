@@ -18,10 +18,13 @@ class volunterWork {
             })
             return res.json(serializedDados);
         }
-        catch {
+        catch(e) {
             console.log('Não foi possível selecionar os trabalhos voluntários cadastrados')
+            return res.json({
+                message: "Não foi possível selecionar os trabalhos voluntários cadastrados",
+                error: `${e}`
+            })
         }
-
         return res.json({ message: 'Ainda não existem dados cadastrados'})
     }
 

@@ -57,8 +57,9 @@ const TalkMe = () => {
             setFormData({nome: '', email: '', telefone: ''} )
             setMessage('')
             debugger;
-        } catch {
+        } catch(e) {
             swal("Ops", "Parece que algo deu errado. Tente novamente", "danger");
+            console.log(`Erro ao enviar o e-mail: ${e}`)
         }
     }
 
