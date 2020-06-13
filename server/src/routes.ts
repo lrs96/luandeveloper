@@ -11,6 +11,9 @@ const personalData = new PersonalData();
 const sendMail = new SendMail();
 const voluntterWork = new VoluntterWork();
 
+routes.get('/', (req, res) => {
+    return res.json({'message': 'funcionou'})
+})
 routes.get('/personal-data', personalData.index);
 routes.get('/voluntter-work', voluntterWork.index);
 routes.post('/voluntter-work', voluntterWork.create);
