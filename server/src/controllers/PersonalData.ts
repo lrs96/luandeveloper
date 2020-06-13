@@ -21,9 +21,12 @@ class PersonalData {
             })
             return res.json(serializedDados)
         }
-        catch {
+        catch(e) {
             console.log('Não foi possível listar os dados')
-            return res.json({message: "Não foi possível listar os dados"})
+            return res.json({
+                message: "Não foi possível listar os dados",
+                error: `${e}`
+            })
         }
         
         return res.json({message: "Ainda não existem dados cadastrados"})
