@@ -1,19 +1,30 @@
 import { Response, Request, text } from 'express'
 import knex from '../database/connection';
-
+require('dotenv').config();
 
 class volunterWork {
     async index(req: Request, res: Response) {
         try {
             const dados = await knex('voluntter_work').select('*');
             const serializedDados = dados.map(dado => {
-                return {
-                    id: dado.id,
-                    image_url: `http://localhost:3333/uploads/${dado.image_url}`,
-                    funcao: dado.funcao,
-                    name_work: dado.name_work,
-                    description: dado.description,
-                    site: dado.site
+                if(process.env.NODE_ENV === 'development') {
+                    return {
+                        id: dado.id,
+                        image_url: `http://localhost:3333/uploads/${dado.image_url}`,
+                        funcao: dado.funcao,
+                        name_work: dado.name_work,
+                        description: dado.description,
+                        site: dado.site
+                    }
+                } else {
+                    return {
+                        id: dado.id,
+                        image_url: `https://luan-developer-ws.herokuapp.com/uploads/${dado.image_url}`,
+                        funcao: dado.funcao,
+                        name_work: dado.name_work,
+                        description: dado.description,
+                        site: dado.site
+                    }
                 }
             })
             return res.json(serializedDados);
