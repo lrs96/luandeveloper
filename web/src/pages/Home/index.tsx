@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGithubAlt, FaWhatsapp } from 'react-icons/fa';
 import Header from '../Partials/Header';
 import AboutMe from '../Partials/AboutMe'
 import VolunteerWork from '../Partials/VolunteerWork';
 import Work from '../Partials/Work';
 import TalkMe from '../Partials/TalkMe';
+
+import SocialMedia from '../Partials/SocialMedia';
 
 import './style.scss';
 import imageLuan from '../../assets/luan-rodrigues-da-silva.svg';
@@ -16,12 +17,6 @@ interface Infos {
     lastname: string,
     age: string,
     email: string,
-    social: {
-        facebook: string,
-        instagram: string,
-        linkedin: string,
-        github: string
-    },
 }
 const Home = () => {
     const [infos, setInfos ] = useState<Infos[]>([])
@@ -40,24 +35,8 @@ const Home = () => {
                     <div className="row align-items-center">
                         <div className="col-12 col-lg-4">
                             {infos.map(item => (
-                            <div className="infos" key={1}>
-                                <div className="social mb-2">
-                                    <a className="social-item" rel="noreferrer" href={item.social.linkedin} target="_blank">
-                                        <FaLinkedinIn />
-                                    </a>
-                                    <a className="social-item" rel="noreferrer" href={item.social.github} target="_blank">
-                                        <FaGithubAlt />
-                                    </a>
-                                    <a className="social-item" rel="noreferrer" href={item.social.instagram} target="_blank">
-                                        <FaInstagram />
-                                    </a>
-                                    <a className="social-item" rel="noreferrer" href={item.social.facebook} target="_blank">
-                                        <FaFacebookF />
-                                    </a>
-                                    <a className="social-item" rel="noreferrer" href="/" target="_blank">
-                                        <FaWhatsapp />
-                                    </a>
-                                </div>
+                            <div className="infos" key={1}> 
+                                <SocialMedia />
                                 <h1 className="mb-3 text-white">{item.name} <span className="text-bs-blue d-block">{item.lastname}<span className="text-white"> .</span></span></h1>
                                 <p className="mb-3">Front-end, UI Designer, palestrante, amante de  séries, livros e comunidades de tecnologia.</p>
                                 <div className="d-flex align-items-center">

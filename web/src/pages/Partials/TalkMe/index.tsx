@@ -1,22 +1,11 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { FaLinkedinIn, FaGithubAlt, FaInstagram, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import swal from 'sweetalert';
+import SocialMedia from  '../SocialMedia';
 
 import './style.scss';
 import api from '../../../services/api'
 
-interface Sociais {
-    social: {
-        instagram: string,
-        linkedin: string,
-        github: string,
-        facebook: string
-    }
-}
-
-
 const TalkMe = () => {
-    const [sociais, setSociais ] = useState<Sociais[]>([])
     const [formData, setFormData] = useState({
         nome: '',
         email: '',
@@ -24,12 +13,6 @@ const TalkMe = () => {
     })
     const [message, setMessage] = useState<string>()
 
-    useEffect(()=> {
-        api.get('personal-data').then(response =>{
-            setSociais(response.data)
-        } )
-    }, [])
-    
     function handleTextAreaChange(event:ChangeEvent<HTMLTextAreaElement>){
         const {name, value} = event.target;
         setMessage(value)
@@ -70,25 +53,7 @@ const TalkMe = () => {
                     <div className="col-12 col-md-4 col-lg-5">
                         <div className="infos">
                             <h2 className="mb-2 h1 title">Fale <span className="d-block text-bs-blue">Comigo <span className="text-dark">.</span></span></h2>
-                            {sociais.map(social => (
-                            <div className="social mt-3" key={1}>
-                                <a className="social-item" href={social.social.linkedin} rel="noopener" target="_blank">
-                                    <FaLinkedinIn />
-                                </a>
-                                <a className="social-item" href={social.social.github} rel="noopener" target="_blank">
-                                    <FaGithubAlt />
-                                </a>
-                                <a className="social-item" href={social.social.instagram} rel="noopener" target="_blank">
-                                    <FaInstagram />
-                                </a>
-                                <a className="social-item" href={social.social.facebook} rel="noopener" target="_blank">
-                                    <FaFacebookF />
-                                </a>
-                                <a className="social-item" href="/" rel="noopener" target="_blank">
-                                    <FaWhatsapp />
-                                </a>
-                            </div>
-                            ))}
+                            <SocialMedia />
                         </div>
                     </div>
                     <div className="col-12 col-md-8 col-lg-7">
