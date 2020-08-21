@@ -6,13 +6,11 @@ import Social from '../../components/Social'
 const SocialMedia = () => {
     return (
         <div className="component-social">
-            <div className="social mt-3">
                 <Social icons={[
                     { href: "", target: "", rel: "", icon: "facebook-f" },
                     { href: "", target: "", rel: "", icon: "twitter" },
                     { href: "", target: "", rel: "", icon: "discord" }
                 ]} />
-            </div>
         </div>
     )
 }
