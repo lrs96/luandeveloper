@@ -1,28 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
-import api from '../../../services/api';
 import voluntter_work from '../../../consumers/volunteer-work.json';
 
 import './style.scss';
 
-interface Works {
-    id: number,
-    image_url: string,
-    funcao: string,
-    name_work: string,
-    description: string,
-    site: string
-}
-
 const VoluntterWork = () => {
-    const [ works, setWorks ] = useState<Works[]>([])
-
-    useEffect(() => {
-        api.get('voluntter-work').then(response => { 
-            setWorks(response.data)
-        })
-    }, [])
    return (
         <section className="container-fluid" id="voluntter_work">
             <div className="container">
@@ -38,7 +21,7 @@ const VoluntterWork = () => {
                                 </p>
                                 <h3 className="h5 mb-2 text-white title">{work.name_work}</h3>
                                 <p className="mb-2">{work.description}</p>
-                                <a href={work.site} className="d-flex align-items-center" target="_blank" >
+                                <a href={work.site} rel="noopener noreferrer" className="d-flex align-items-center" target="_blank" >
                                     <span className="pr-3">Saber mais</span> <FaArrowRight />
                                 </a>
                             </div>

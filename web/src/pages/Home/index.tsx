@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from '../Partials/Header';
 import AboutMe from '../Partials/AboutMe'
 import VolunteerWork from '../Partials/VolunteerWork';
@@ -9,24 +9,9 @@ import SocialMedia from '../Partials/SocialMedia';
 
 import './style.scss';
 import imageLuan from '../../assets/luan-rodrigues-da-silva.svg';
+import infos from '../../consumers/personal-data.json';
 
-import api from '../../services/api';
-
-interface Infos {
-    name: string,
-    lastname: string,
-    age: string,
-    email: string,
-}
 const Home = () => {
-    const [infos, setInfos ] = useState<Infos[]>([])
-
-    useEffect(() => {
-        api.get('personal-data').then(response => {
-            setInfos(response.data);
-        })
-    }, [])
-
     return (
         <main>
             <Header />
